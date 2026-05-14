@@ -17,7 +17,7 @@
 - Place bomb: `Space`
 
 ## Run locally (server + client)
-1. Open the project in Godot 4.x.
+1. Open the project in Godot 4.6 (or newer Godot 4 release).
 2. Start a server instance:
    ```bash
    godot4 --path /path/to/Godot-Bomberman -- --server

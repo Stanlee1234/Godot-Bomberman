@@ -144,7 +144,7 @@ func _on_bomb_detonate_requested(cell: Vector2i, blast_range: int):
         return
     _active_bomb_cells.erase(cell)
     var explosion_result := _calculate_explosion(cell, blast_range)
-    rpc("apply_explosion", explosion_result["affected"], explosion_result["destroyed"])
+    apply_explosion.rpc(explosion_result["affected"], explosion_result["destroyed"])
 
 func _calculate_explosion(origin: Vector2i, blast_range: int) -> Dictionary:
     var tilemap: TileMapLayer = $TileMapLayer
