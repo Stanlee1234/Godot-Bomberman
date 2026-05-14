@@ -8,25 +8,24 @@
 ## Features
 - ENet multiplayer setup with server/client roles
 - Server-authoritative player spawning via RPC
-- Organized scene tree with TileMapLayer, Players, and Bombs containers
-- Player scene based on `CharacterBody2D` with sprite and collision
+- Grid-based bomb placement and server-authoritative explosions
+- Destructible wall tiles removed from `TileMapLayer` by explosion results from the server
+- Movement handled locally on each authority peer (no continuous movement replication)
 
-## How to run locally
-1. Open the project in Godot 4.
-2. Enable the **Godot-Wakatime** plugin in `Project -> Project Settings -> Plugins`.
-3. Run a server instance:
-   ```
-   godot --server --path /path/to/Godot-Bomberman
-   ```
-4. Run another instance normally as a client from the editor or with:
-   ```
-   godot --path /path/to/Godot-Bomberman
-   ```
-5. The client should connect to `127.0.0.1:7777` and request a player spawn from the server.
+## Controls
+- Move: `WASD` or Arrow keys
+- Place bomb: `Space`
 
-## Guide to finish the project
-Follow the tutorial steps in the assignment:
-- Build out the TileMapLayer with destructible walls and floor tiles.
-- Add bomb placement RPCs and a Bomb scene that spawns explosions.
-- Keep movement local to the authority peer and replicate only important events.
-- Test with one server instance and at least one client instance before exporting.
+## Run locally (server + client)
+1. Open the project in Godot 4.6 (or newer Godot 4 release).
+2. Start a server instance:
+   ```bash
+   godot4 --path /path/to/Godot-Bomberman -- --server
+   ```
+   - You can also use a dedicated server export with the `server` feature tag.
+3. Start a client instance (editor run button or CLI):
+   ```bash
+   godot4 --path /path/to/Godot-Bomberman
+   ```
+4. The client connects to `127.0.0.1:7777`.
+5. Move and press `Space` on the client to request bomb placement. Bomb spawn/explosion and destroyed destructible tiles should match on all peers.
