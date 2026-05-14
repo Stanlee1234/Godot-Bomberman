@@ -14,7 +14,7 @@ func start_server():
 	var err = peer.create_server(PORT, MAX_PLAYERS)
 	if err != OK:
 		push_error("failed to start server on port %d: %s" % [PORT, error_string(err)])
-	return
+		return
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -25,7 +25,7 @@ func start_client():
 	var err = peer.create_client("127.0.0.1", PORT)
 	if err != OK:
 		push_error("failed to create client for 127.0.0.1:%d: %s" % [PORT, error_string(err)])
-	return
+		return
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)

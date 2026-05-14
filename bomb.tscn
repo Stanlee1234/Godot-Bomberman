@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c02b85f1ecvt8"]
+
+[ext_resource type="Texture2D" uid="uid://bjogjj228oaaf" path="res://bomb.png" id="1_573fp"]
+
+[node name="Bomb" type="Node2D" unique_id=513441787]
+
+[node name="Timer" type="Timer" parent="." unique_id=217888472]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1749296952]
+texture = ExtResource("1_573fp")
