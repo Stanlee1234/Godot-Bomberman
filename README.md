@@ -3,7 +3,6 @@
 ## What I made this with
 - Godot 4 (project configured for 4.6)
 - GDScript
-- Godot WakaTime editor plugin (included in `addons/godot-wakatime`)
 
 ## Features
 - ENet multiplayer setup with server/client roles
