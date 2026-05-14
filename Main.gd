@@ -13,7 +13,7 @@ func start_server():
 	var peer = ENetMultiplayerPeer.new()
 	var err = peer.create_server(PORT, MAX_PLAYERS)
 	if err != OK:
-		push_error("failed to start server on port %d: %s" % [PORT, err])
+		push_error("failed to start server on port %d: %s" % [PORT, error_string(err)])
 		return
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
@@ -24,7 +24,7 @@ func start_client():
 	var peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client("127.0.0.1", PORT)
 	if err != OK:
-		push_error("failed to create client for 127.0.0.1:%d: %s" % [PORT, err])
+		push_error("failed to create client for 127.0.0.1:%d: %s" % [PORT, error_string(err)])
 		return
 multiplayer.multiplayer_peer = peer
 multiplayer.connected_to_server.connect(_on_connected_to_server)
