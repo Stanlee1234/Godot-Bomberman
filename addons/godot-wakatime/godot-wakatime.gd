@@ -91,20 +91,19 @@ var column_number = cursor_pos[1]
 var total_lines = cursor_pos[2]
 var category = "building" if scene_mode else "coding"
 
-var args = [
-"--key", api_key,
-"--entity", project_name,
-"--time", str(current_time),
-"--write",
-"--plugin", "godot-wakatime/0.0.1",
-"--alternate-project", project_name,
-"--language", "Godot",
-"--is-unsaved-entity",
-"--cursorpos", str(column_number),
-"--lineno", str(line_number),
-"--lines-in-file", str(total_lines),
-"--category", category
-]
+	var args = [
+		"--key", api_key,
+		"--entity", project_name,
+		"--time", str(current_time),
+		"--write",
+		"--plugin", "godot-wakatime/0.0.1",
+		"--alternate-project", project_name,
+		"--language", "Godot",
+		"--cursorpos", str(column_number),
+		"--lineno", str(line_number),
+		"--lines-in-file", str(total_lines),
+		"--category", category
+	]
 
 OS.execute(wakatime_cli_path, args, output, true)
 scene_mode = false
@@ -141,13 +140,20 @@ return ""
 return home.path_join(".wakatime.cfg")
 
 func _get_wakatime_cli_path() -> String:
-var home = _get_home_directory()
-if home.is_empty():
-return ""
-var base = home.path_join(".wakatime")
-var os_name = OS.get_name()
-var arch = Engine.get_architecture_name()
-var arch_label = "arm64" if arch == "arm64" else "amd64"
+	var home = _get_home_directory()
+	if home.is_empty():
+		return ""
+	var base = home.path_join(".wakatime")
+	var os_name = OS.get_name()
+	var arch = Engine.get_architecture_name()
+	var arch_label = ""
+	match arch:
+		"x86_64", "amd64":
+			arch_label = "amd64"
+		"arm64", "aarch64":
+			arch_label = "arm64"
+		_:
+			return ""
 var suffix = ""
 var os_label = ""
 
